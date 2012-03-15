@@ -136,5 +136,5 @@ DEPENDENCIES
   rails (= 3.2.2)
   sass-rails (~> 3.2.3)
   sqlite3
-  taps
+  taps (~> 0.3.23)
   uglifier (>= 1.0.3)
