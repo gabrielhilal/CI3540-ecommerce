@@ -1,0 +1,18 @@
+<% #partial form for views "new.html.erb" and "edit.html.erb". %>
+<% #@category is declared in the categories controller actions NEW and EDIT, %>
+<% # so its value depends on the action that the form will be used for (NEW od EDIT). %>
+<% #start form. %>
+<%= form_for(@category) do |f| %>
+    <% #display error messages if form can't be submitted. %>
+    <% #please see shared partial "error_messages.html.erb" for details. %>
+    <% #please also refer to the model Categories for validations that may impede submission %>
+    <%= render 'shared/error_messages', :object => f.object %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

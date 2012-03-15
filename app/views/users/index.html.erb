@@ -1,0 +1,39 @@
+<h1>Listing users</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Admin?</th>
+    <td></td>
+  </tr>
+<% #start loop to check all users %>
+<% @users.each do |user| %>
+  <tr>
+    <% #display its name %>
+    <td><%= user.name %></td>
+    <% #display its email %>
+    <td><%= user.email %></td>
+    <% #admin is boolean, so user.admin will result tru of false %>
+    <% #for a better view we check if the user is admin %>
+    <% if user.admin? %>
+      <% #if true display yes %>
+      <td>yes</td>
+    <% else %>
+      <% #if false display no %>
+      <td>no</td>
+    <% end %>
+    <% #link to show user details %>
+    <td><%= link_to 'Show', user %> |
+        <% #link to edit the user details %>
+        <%= link_to 'Edit', edit_user_path(user) %> |
+        <% #link to delete user %>
+        <%= link_to 'Delete', user, confirm: 'Are you sure?', method: :delete %>
+    </td>
+  </tr>
+<% #end loop %>
+<% end %>
+</table>
+
+<br />
+<% #link to create a new user %>
+<%= link_to 'New User', new_user_path %>

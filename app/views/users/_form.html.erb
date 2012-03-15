@@ -1,0 +1,41 @@
+<%= form_for(@user) do |f| %>
+<% #display error messages if form can't be submitted. %>
+<% #please see shared partial "error_messages.html.erb" for details. %>
+<% #please also refer to the model User for validations that may impede submission %>
+<%= render 'shared/error_messages', :object => f.object %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+    <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_area :address, cols:25, rows:5 %>
+  </div>
+
+    <% #admin is 0 by default. This check box will appear only for admin users, so others users can't choose it %>
+    <% unless current_user.nil? %>
+      <% if current_user.admin? %>
+  <div class="field">
+    <%= f.label :admin %><br />
+    <%= f.check_box :admin %>
+  </div>
+      <% end %>
+    <% end %>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

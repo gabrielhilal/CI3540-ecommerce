@@ -1,0 +1,20 @@
+<h1>Orders</h1>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Order No</th>
+    <th>Items</th>
+    <th>Amount</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+<% @orders.each do |order| %>
+    <td><%= order.created_at.to_formatted_s(:short) %></td>
+    <td><%= link_to order.id, edit_order_path(order) %></td>
+    <td><%= order.line_items.map do |i| i.quantity end.sum %></td>
+    <% total = order.line_items.map do |i| i.quantity * i.product.price.to_f end.sum %>
+    <td><%= number_to_currency total, unit: "&pound;" %></td>
+    <td><%= order.status %></td>
+  </tr>
+<% end %>
+</table>

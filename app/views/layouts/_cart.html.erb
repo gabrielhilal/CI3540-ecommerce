@@ -1,0 +1,62 @@
+<% if current_user.nil? %>
+  <div class="align-right"><%= link_to 'Login', login_path %> | New customer? <%= link_to 'Sign in', new_user_path %></div><br />
+<% else %>
+  <div class="align-right">Not <%= current_user.name %>? <%= link_to 'Logout', logout_path %></div>
+<% end %>
+
+<div><strong>Your Cart:</strong></div><br />
+<table>
+<% #start loop to display all line_items in the current cart %>
+<% current_cart.line_items.each do |item| %>
+  <tr>
+    <% #display quantity %>
+    <td class="no-padding"><%= item.quantity %></td>
+    <% #display title %>
+    <td class="showhim"><%= item.product.title %>
+      <div class="showme">
+      <table>
+        <tr>
+          <td colspan="2"><strong><%= item.product.title %></strong></td>
+        </tr>
+        <tr>
+          <td rowspan="4"><%= image_tag item.product.image, width: 70 %></td>
+        </tr>
+        <tr>
+          <td><strong><%= item.quantity %></strong> x <%= number_to_currency item.product.price, unit: "&pound;" %></td>
+        </tr>
+        <tr>
+          <td><strong><%= number_to_currency (item.quantity * item.product.price), unit: "&pound;" %></strong></td>
+        </tr>
+        <tr>
+          <td><% if item.quantity > 1 %>
+              <%= link_to 'remove one', item, method: :delete %>
+          <% else %>
+              <%= link_to 'remove', item, method: :delete %>
+          </td>
+          <% end %>
+        </tr>
+      </table>
+      </div>
+    </td>
+  </tr>
+<% #end loop %>
+<% end %>
+</table>
+<br />
+
+<% #button to empty the current cart and total will appear only if there is at least one line item in the cart %>
+<% unless current_cart.line_items.empty? %>
+  <% #here we add to a variable total, the sum of all line_items quantity multiplied for its product price  %>
+  <% total = current_cart.line_items.map do |i| i.quantity * i.product.price.to_f end.sum %>
+  <% #than we display the variable total as currency in pounds %>
+  <div class="align-right">Total: <strong><%= number_to_currency total, unit: "&pound;" %></strong></div><br />
+
+  <% #button to empty cart - request conformation before emptying the cart %>
+  <div class="align-right"><%= button_to 'Empty cart', current_cart, confirm: 'Are you sure you want to empty your cart?', method: :delete %></div>
+  <div><%= button_to 'CHECK OUT', new_order_path, method: :get %></div>
+<% end %>
+
+<% #if there is someone logged we display the manage account option %>
+<% unless current_user.nil? %>
+ <p class="admin-area"><strong><%= link_to 'Manage Account', current_user %></strong></p>
+<% end %>

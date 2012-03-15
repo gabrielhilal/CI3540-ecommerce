@@ -1,0 +1,42 @@
+<h1>User details</h1>
+<table>
+  <tr>
+    <td colspan="2"><%= link_to 'edit your details', edit_user_path(@user) %></td>
+  </tr>
+  <tr>
+    <td>Name:</td>
+    <td><strong><%= @user.name %></strong></td>
+  </tr>
+  <tr>
+    <td>Email:</td>
+    <td><strong><%= @user.email %></strong></td>
+  </tr>
+  <tr>
+    <td>Address:</td>
+    <td><%= simple_format(@user.address) %></td>
+  </tr>
+</table>
+
+<h1>Orders</h1>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Order No</th>
+    <th>Items</th>
+    <th>Amount</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+<% @user.orders.each do |order| %>
+    <td><%= order.created_at.to_formatted_s(:short) %></td>
+    <td><%= link_to order.id, order_path(order) %></td>
+    <td><%= order.line_items.map do |i| i.quantity end.sum %></td>
+    <% total = order.line_items.map do |i| i.quantity * i.product.price.to_f end.sum %>
+    <td><%= number_to_currency total, unit: "&pound;" %></td>
+    <td><%= order.status %></td>
+  </tr>
+<% end %>
+</table>
+
+
+

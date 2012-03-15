@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ecommerce</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<section>
+  <header>
+    <%= render "layouts/header" %>
+  </header>
+
+    <% flash.each do |key, value| %>
+  <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
+
+  <nav>
+    <%= render "layouts/nav" %>
+  </nav>
+
+  <div id="content">
+    <%= yield %>
+  </div>
+
+  <div id="cart">
+  <% if current_user.nil? %>
+     <%= render "layouts/cart" %>
+  <% else %>
+    <% if current_user.admin? %>
+      <%= render "layouts/admin" %>
+    <% else %>
+      <%= render "layouts/cart" %>
+    <% end %>
+  <% end %>
+  </div>
+
+  <footer>
+    <%= render "layouts/footer" %>
+  </footer>
+</section>
+
+
+</body>
+</html>

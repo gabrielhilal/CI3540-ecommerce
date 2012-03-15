@@ -1,0 +1,32 @@
+<table>
+  <tr><td>Customer:</td><td><strong><%= @order.user.name + ' | ' + @order.user.email %></strong></td></tr>
+  <tr><td>Order No:</td><td><strong><%= @order.id %></strong></td></tr>
+  <tr><td>Order Date:</td><td><strong><%= @order.created_at.to_formatted_s(:short) %></strong></td></tr>
+  <tr><td>Order Status:</td><td><strong><%= @order.status %></strong></td></tr>
+</table>
+<br />
+
+<h3>Items</h3>
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Total</th>
+  </tr>
+<% @order.line_items.each do |item| %>
+  <tr>
+    <td><%= item.product.title %></td>
+    <td><%= item.quantity %></td>
+    <td><%= number_to_currency item.product.price, unit: "&pound;" %></td>
+    <td><%= number_to_currency (item.quantity * item.product.price), unit: "&pound;" %></td>
+  </tr>
+<% end %>
+  <tr>
+    <td></td>
+    <td><strong><%= @order.line_items.map do |i| i.quantity end.sum %></strong></td>
+    <td></td>
+    <% total = @order.line_items.map do |i| i.quantity * i.product.price.to_f end.sum %>
+    <td><strong><%= number_to_currency total, unit: "&pound;" %></strong></td>
+  </tr>
+</table>

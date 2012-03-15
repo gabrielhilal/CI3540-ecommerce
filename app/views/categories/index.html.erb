@@ -1,0 +1,20 @@
+<h1>Categories</h1>
+
+<table>
+<% #start loop to check all categories stored in the variable @categories %>
+<% @categories.each do |category| %>
+  <tr>
+    <% #display the category's name (column name on table categories) %>
+    <td><%= category.name %></td>
+    <% #link to edit the category. Please see action EDIT on the categories controller %>
+    <td><%= link_to 'Edit', edit_category_path(category) %> |
+      <% #link to delete the category. Please see action DESTROY on the categories controller %>
+      <%= link_to 'Delete', category, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% #end of loop %>
+<% end %>
+</table>
+
+<br />
+<% #link to create a new category. Please see action NEW on the categories controller %>
+<%= link_to 'New Category', new_category_path %>
