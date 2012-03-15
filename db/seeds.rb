@@ -36,7 +36,7 @@ Product.create(title: 'Rails Test Prescriptions',
   description: %{Rails Test Prescriptions is a comprehensive guide to testing
   Rails applications, covering Test-Driven Development from both a
   theoretical perspective (why to test) and from a practical perspective
-  (how to test effectively). },
+  (how to test effectively).},
   image: 'rtp.jpg',
   price: 34.95,
   category_id: 1,
@@ -72,8 +72,7 @@ Product.create(title: 'Ruminations on C++',
 Product.create(title: 'Sams Teach Yourself Java in 24 Hours',
   description: %{In just 24 lessons of one hour or less, you can learn how to create Java applications
   with the free NetBeans visual editing tools. Using a straightforward, step-by-step approach, popular
-  author Rogers Cadenhead helps you master the skills and technology you need to create desktop and web
-  programs, web services, and even an Android app in Java.},
+  author Rogers Cadenhead helps you master the skills...},
   image: 'java1.jpg',
   price: 27.40,
   category_id: 3,
@@ -82,8 +81,7 @@ Product.create(title: 'Sams Teach Yourself Java in 24 Hours',
 Product.create(title: 'Java Pocket Guide',
   description: %{How many times have you reached an impasse while writing code because you couldn't remember
   how something in Java worked? This new pocket guide is designed to keep you moving. Concise, convenient and
-  easy to use, the Java Pocket Guide gives you Java stripped down to its bare essentials -- in fact, it's the
-  only book on Java that you can actually fit in your pocket.},
+  easy to use, the Java Pocket Guide gives you Java stripped down to its bare essentials...},
   image: 'java2.jpg',
   price: 18.99,
   category_id: 3,
@@ -127,7 +125,7 @@ Product.create(title: 'Sams Teach Yourself HTML and CSS in 24 Hours',
 Product.create(title: 'HTML & CSS: Design and Build Web Sites',
   description: %{Every day, more and more people want to learn some HTML and CSS. Joining the
   professional web designers and programmers are new audiences who need to know a little bit of
-  code at work (update a content management system or Ecommerce store) ...},
+  code at work ...},
   image: 'css2.jpg',
   price: 23.99,
   category_id: 6,
@@ -136,9 +134,7 @@ Product.create(title: 'HTML & CSS: Design and Build Web Sites',
 Product.create(title: 'CoffeeScript',
   description: %{CoffeeScript is JavaScript done right. It provides all of JavaScript's
 	functionality wrapped in a cleaner, more succinct syntax. In the first
-	book on this exciting new language, CoffeeScript guru Trevor Burnham
-	shows you how to hold onto all the power and flexibility of JavaScript
-	while writing clearer, cleaner, and safer code.},
+	book on this exciting new language},
   image:   'cs.jpg',
   price: 36.00,
   category_id: 7,
