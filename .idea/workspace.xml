@@ -22,10 +22,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="seeds.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="seeds.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="120" column="35" selection-start="4314" selection-end="4314" vertical-scroll-proportion="-0.7912088">
+            <state line="120" column="35" selection-start="4314" selection-end="4314" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_footer.html.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/_footer.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="107" selection-start="257" selection-end="257" vertical-scroll-proportion="0.14159292">
               <folding />
             </state>
           </provider>
@@ -755,16 +764,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/_footer.html.erb">
+    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="55" selection-start="423" selection-end="423" vertical-scroll-proportion="0.37758112">
+        <state line="120" column="35" selection-start="4314" selection-end="4314" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/_footer.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="35" selection-start="4314" selection-end="4314" vertical-scroll-proportion="-0.7912088">
+        <state line="3" column="107" selection-start="257" selection-end="257" vertical-scroll-proportion="0.14159292">
           <folding />
         </state>
       </provider>
