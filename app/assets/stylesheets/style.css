@@ -19,7 +19,7 @@ header {
     background-position: center;
     background-color: #ffffff;
     width: 100%;
-    height: 150px;
+    height: 160px;
     }
 
 nav {
@@ -114,6 +114,7 @@ td, th {
     border-color:#000000;
     border-radius: 10px;
     }
+
 .error {
     text-align: center;
     margin-bottom: 5px;
@@ -122,20 +123,24 @@ td, th {
     border-color:#ff3333;
     border-radius: 10px;
     }
+
 .field_with_errors {
     background-color: #ff3333;
     display: table;
     }
+
 .field_with_errors label {
     color: #ff3333;
     background-color: #ffffff;
     }
+
 #error_explanation {
     width: 400px;
     border: 2px solid #ff3333;
     margin-bottom: 20px;
     background-color: #cccccc;
     }
+
 .showme {
     display: none;
     position: absolute;
@@ -145,9 +150,21 @@ td, th {
     padding: 5px;
     border-radius: 10px;
     }
+
 .showhim:hover .showme {
     display: block;
 	}
+
 .showhim {
     cursor: pointer;
     }
+.floatleft {
+    color: #dddddd;
+    float: left;
+}
+
+.floatright {
+    color: #dddddd;
+    float: right;
+    text-align: right;
+}
