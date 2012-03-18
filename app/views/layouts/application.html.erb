@@ -1,3 +1,4 @@
+<% #Please note we are using HTML5 in this application. %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,38 +10,57 @@
 <body>
 <section>
   <header>
+    <% #here we are including the _header.html.erb. %>
     <%= render "layouts/header" %>
   </header>
 
+  <% #here we are displaying the error/success message. Please note the shared partial %>
+  <% # "_error_messages.html.erb", as well as the controllers for message's' details. %>
     <% flash.each do |key, value| %>
   <div class="flash <%= key %>"><%= value %></div>
     <% end %>
 
   <nav>
+    <% #here we are including the _nav.html.erb. %>
     <%= render "layouts/nav" %>
   </nav>
 
   <div id="content">
+    <% #here is where all the views related to controllers will be displayed. %>
     <%= yield %>
   </div>
+  
+  <div id="searching">
+    <% #here we are including the _search.html.erb. %>
+    <%= render "layouts/search" %>
+  </div>
 
+  <% #inside ID "cart" we will display the admin navigation id logged user has admin privileges, %>
+  <% # otherwise we display the cart. Please note that the method "current_user" is declared on  %>
+  <% # application controller. %>
   <div id="cart">
+    <% #before checking if the user is admin we need to check if there is someone is logged in, %>
+    <% # otherwise we will ge an error trying to get "current_user.admin". %>
   <% if current_user.nil? %>
+     <% #if nobody is logged we including the _cart.html.erb. %>
      <%= render "layouts/cart" %>
   <% else %>
+    <% #if someone is logged we need to check if the user has admin privileges. %>
     <% if current_user.admin? %>
+      <% #if yes, we including the _admin.html.erb %>
       <%= render "layouts/admin" %>
     <% else %>
+      <% #hif the user is not an admin we including the _cart.html.erb %>
       <%= render "layouts/cart" %>
     <% end %>
   <% end %>
   </div>
 
   <footer>
+    <% #here we are including the _footer.html.erb %>
     <%= render "layouts/footer" %>
   </footer>
 </section>
-
 
 </body>
 </html>

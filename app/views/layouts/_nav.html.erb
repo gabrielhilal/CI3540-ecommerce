@@ -1,8 +1,13 @@
+<% #it is a link for the application INDEX (store_path) %>
 <p><strong><%= link_to "Home", store_path%></strong></p>
 <strong>Categories:</strong>
+<% #here we are creating a loop through all categories %>
 <% Category.all.each do |category| %>
+    <% #for each category we display its name as a link the the SHOW action in the categories controller. %>
     <div>- <%= link_to category.name, category_path(category) %></div>
+<% #here we close the loop %>
 <% end %>
+<% #please note "About US" and "Contact US" were not implemented. %>
 <p><strong>About US</strong></p>
 <p><strong>Contact US</strong></p>
 

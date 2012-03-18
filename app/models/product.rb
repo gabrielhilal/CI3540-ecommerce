@@ -23,5 +23,12 @@ class Product < ActiveRecord::Base
   validates :price,       presence: true,
                           numericality: { greater_than: 0 }
 
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['title LIKE ? OR description LIKE ?', "%#{search}%", "%#{search}%"])
+    else
+      find(:all)
+    end
+  end
 
 end
