@@ -1,22 +1,13 @@
 <h1>User details</h1>
+<% #in this table we display the user details. %>
 <table>
-  <tr>
-    <td colspan="2"><%= link_to 'edit your details', edit_user_path(@user) %></td>
-  </tr>
-  <tr>
-    <td>Name:</td>
-    <td><strong><%= @user.name %></strong></td>
-  </tr>
-  <tr>
-    <td>Email:</td>
-    <td><strong><%= @user.email %></strong></td>
-  </tr>
-  <tr>
-    <td>Address:</td>
-    <td><%= simple_format(@user.address) %></td>
-  </tr>
+  <% #link to edit user details %>
+  <tr><td colspan="2"><%= link_to 'edit your details', edit_user_path(@user) %></td></tr>
+  <tr><td>Name:</td><td><strong><%= @user.name %></strong></td></tr>
+  <tr><td>Email:</td><td><strong><%= @user.email %></strong></td></tr>
+  <tr><td>Address:</td><td><%= simple_format(@user.address) %></td></tr>
 </table>
-
+<% #in this table we display the orders related to this user. %>
 <h1>Orders</h1>
 <table>
   <tr>
@@ -27,14 +18,21 @@
     <th>Status</th>
   </tr>
   <tr>
+<% #start loop to display all the orders related to the user %>
 <% @user.orders.each do |order| %>
     <td><%= order.created_at.to_formatted_s(:short) %></td>
+    <% #link to display order details (products). Please note action SHOW in the orders controller %>
     <td><%= link_to order.id, order_path(order) %></td>
+    <% #sum the quantity of each line_item related to the order. %>
     <td><%= order.line_items.map do |i| i.quantity end.sum %></td>
+    <% #save in the total variable the sum of quantity multiplied by price of each line_item %>
     <% total = order.line_items.map do |i| i.quantity * i.product.price.to_f end.sum %>
+    <% #display the result in currency pounds %>
     <td><%= number_to_currency total, unit: "&pound;" %></td>
+    <% #display order status %>
     <td><%= order.status %></td>
   </tr>
+<% #end loop %>
 <% end %>
 </table>
 

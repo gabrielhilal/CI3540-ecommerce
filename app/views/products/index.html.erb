@@ -8,15 +8,23 @@
     <th>Available</th>
     <td></td>
   </tr>
+<% #start loop to display all products %>
 <% @products.each do |product| %>
   <tr>
+    <% #product title %>
     <td><%= product.title %></td>
+    <% #product price %>
     <td><%= number_to_currency product.price, unit: "&pound;" %></td>
+    <% #product quantity %>
     <td><%= product.quantity %></td>
+    <% #product quantity sold (sum of quantity of all line_items related to the product) %>
     <td><%= product.line_items.map do |i| i.quantity end.sum %></td>
+    <% #Product quantity available (product quantity less quantity sold) %>
     <td><%= product.quantity - product.line_items.map do |i| i.quantity end.sum %></td>
+    <% #link to edit and delete product %>
     <td><%= link_to 'edit', edit_product_path(product) %> |
         <%= link_to 'delete', product, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
+<% #end loop %>
 <% end %>
 </table>

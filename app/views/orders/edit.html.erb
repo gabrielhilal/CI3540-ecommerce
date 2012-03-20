@@ -4,22 +4,24 @@
     <% #please also refer to the model Categories for validations that may impede submission %>
     <%= render 'shared/error_messages', :object => f.object %>
 <table>
+  <%# #display order details %>
   <tr><td>Customer:</td><td><strong><%= @order.user.name + ' | ' + @order.user.email %></strong></td></tr>
   <tr><td>Order No:</td><td><strong><%= @order.id %></strong></td></tr>
   <tr><td>Order Date:</td><td><strong><%= @order.created_at.to_formatted_s(:short) %></strong></td></tr>
+  <% #the order status is "Processing" by default, but here the admin can change the status from a drop down list defined in the model %>
   <tr><td>Status:</td><td><%= f.select :status, Order::STATUS %></td></tr>
-
 </table>
 <br />
-
 <h3>Items</h3>
 <table>
+  <% #display items related to the order. %>
   <tr>
     <th>Item</th>
     <th>Quantity</th>
     <th>Price</th>
     <th>Total</th>
   </tr>
+<% #start loop to display all items related to this order. The below is very similar to the NEW view. Please see code there for details. %>
 <% @order.line_items.each do |item| %>
   <tr>
     <td><%= item.product.title %></td>

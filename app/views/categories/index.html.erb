@@ -1,5 +1,4 @@
 <h1>Categories</h1>
-
 <table>
 <% #start loop to check all categories stored in the variable @categories %>
 <% @categories.each do |category| %>
@@ -14,7 +13,6 @@
 <% #end of loop %>
 <% end %>
 </table>
-
 <br />
 <% #link to create a new category. Please see action NEW on the categories controller %>
 <%= link_to 'New Category', new_category_path %>

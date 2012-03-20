@@ -14,9 +14,9 @@
     <%= render "layouts/header" %>
   </header>
 
-  <% #here we are displaying the error/success message. Please note the shared partial %>
-  <% # "_error_messages.html.erb", as well as the controllers for message's' details. %>
+  <% #here we are displaying the error/success message. Please note controllers for message's' details. %>
     <% flash.each do |key, value| %>
+  <% #the key will be used in the css (.error and .success) and the value is the message %>
   <div class="flash <%= key %>"><%= value %></div>
     <% end %>
 

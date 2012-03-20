@@ -1,20 +1,16 @@
 class OrdersController < ApplicationController
-
   #method authorize was declared on the application controller to check if the user is logged.
   #here we are blocking the SHOW and INDEX actions to be executed if the user is not logged.
   #also blocking EDIT and UPDATE as only logged users can edit details.
   before_filter :authorize, only: [ :show, :index, :edit, :update ]
-
   #method admin was declared on the application controller to check if the logged user has admin privileges
   #here we are blocking the below actions to be executed if the logged user is not admin.
   before_filter :admin, only: [ :index, :edit, :update ]
-
   #index action is protected above, so only user with admin privileges can access it.
   def index
     #here we find all orders in the orders table and add to the @orders variable.
     @orders = Order.all
   end
-
   #show action is available only for logged users.
   def show
     #here we find the other by its id.
@@ -27,11 +23,10 @@ class OrdersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
-
   def new
     #despite the fact that the link to check out is only available if the cart is not empty
-    #       (please see cart partial for details), we can also avoid empty orders as below.
-    #to avoid empty orders, we ensure that there are products (line_items) in the cart.
+    #  (please see cart partial for details), we can also avoid empty orders as below.
+    # to avoid empty orders, we ensure that there are products (line_items) in the cart.
     if current_cart.line_items.empty?
       #if cart is empty display error message.
       flash[:error] = "Your cart is empty"
@@ -49,15 +44,14 @@ class OrdersController < ApplicationController
     @items = current_cart.line_items
     end
   end
-
   def create
     #now we create a new order based in the params filled in the form (NEW view)
     @order = Order.new(params[:order])
     #than we add the line_items from the cart to the order (please note order model for details, as the method
-    #                                                             add_line_items_from_cart was created there).
+    # add_line_items_from_cart was created there).
     @order.add_line_items_from_cart(current_cart)
     #we also need to specify which user the new order belongs, so we add the current user id to the column user_id
-    #                                                                                         in the orders table.
+    # in the orders table.
     @order.user_id = current_user.id
     #now we try to save the order
     if @order.save
@@ -71,12 +65,11 @@ class OrdersController < ApplicationController
       #if it is not saved the reason will be displayed (please see NEW view for details)
       #   and render the NEW action, so the form can be changed to pass the validations.
       #please note that we need the @items declared in the NEW action again here, as we are displaying
-      #                                                             it above the form in the NEW view.
+      # it above the form in the NEW view.
       @items = current_cart.line_items
       render 'new'
     end
   end
-
   #only logged users with admin privileges can access this action.
   def edit
     #similar to the NEW action, but instead of create a empty order, we will find a order
@@ -84,7 +77,6 @@ class OrdersController < ApplicationController
     #@order variable will be used in the partial form, when submitted goes to UPDATE action.
     @order = Order.find(params[:id])
   end
-
   def update
     #first we find the order edited in edit view (actually only the STATUS will be edited).
     @order = Order.find(params[:id])
@@ -99,5 +91,4 @@ class OrdersController < ApplicationController
         render action: "edit"
       end
   end
-
 end

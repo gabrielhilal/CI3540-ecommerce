@@ -8,13 +8,21 @@
     <th>Status</th>
   </tr>
   <tr>
+<% #start loop to display all orders %>
 <% @orders.each do |order| %>
+    <% #display date of creation %>
     <td><%= order.created_at.to_formatted_s(:short) %></td>
+    <% #link to edit order - for admin change the order status %>
     <td><%= link_to order.id, edit_order_path(order) %></td>
+    <% #total quantity of the order (sum the quantity of each line item related to the order) %>
     <td><%= order.line_items.map do |i| i.quantity end.sum %></td>
+    <% #total amount of the order (sum of quantity multiplied by price of each line item related to the order) %>
     <% total = order.line_items.map do |i| i.quantity * i.product.price.to_f end.sum %>
+    <% #display total in currency (pounds)) %>
     <td><%= number_to_currency total, unit: "&pound;" %></td>
+    <% #display order status %>
     <td><%= order.status %></td>
   </tr>
+<% #end loop %>
 <% end %>
 </table>

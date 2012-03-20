@@ -1,6 +1,6 @@
 <h1>Login</h1>
 <% #here we are using the form_tag instead of form_for, because this form is not related to a model (database) %>
-<% #the params will be passed to the CREATE action in the sessions controller when the form is submitted %>
+<% #the params will be passed to the CREATE action in the Sessions Controller when the form is submitted %>
 <%= form_tag sessions_path do %>
   <div class="field">
     <%= label_tag :email %><br />
@@ -15,4 +15,5 @@
   </div>
 <% end %>
 <br />
+<% #here we create a link to sign in (action NEW in the Users Controller) %>
 <div>New customer? <%= link_to "Sign in", new_user_path %></div>

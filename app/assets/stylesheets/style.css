@@ -11,7 +11,7 @@ section {
     width: 100%;
     margin: 0 auto;
     }
-
+/* HEADER */
 header {
     background: url(logo.png);
     background-size: 300px 150px;
@@ -21,7 +21,7 @@ header {
     width: 100%;
     height: 160px;
     }
-
+/* NAV */
 nav {
     text-align: left;
     float: left;
@@ -31,18 +31,18 @@ nav {
     border-radius: 10px;
     margin-bottom: 1%;
     }
-
+/* links inside NAV */
 nav a {
     color: #000000;
 	text-decoration: none;
     }
-
+/* hovering links inside NAV */
 nav a:hover {
     color: #ffffff;
     text-decoration: none;
     background-color: #000000;
     }
-
+/* CONTENT - the application container (<%= yield %>) */
 #content {
     text-align: justify;
     float: left;
@@ -54,11 +54,11 @@ nav a:hover {
     border-radius: 10px;
     margin-bottom: 1%;
     }
-
+/* images inside the CONTENT */
 #content img {
     border: 1px solid #000000;
     }
-
+/* SEARCHING */
 #searching {
     float: right;
     width: 20%;
@@ -67,7 +67,7 @@ nav a:hover {
     border-radius: 10px;
     margin-bottom: 1%;
     }
-
+/* CART and ADMIN*/
 #cart {
     float: right;
     width: 20%;
@@ -76,18 +76,18 @@ nav a:hover {
     border-radius: 10px;
     margin-bottom: 1%;
     }
-
+/* class for links inside ADMIN */
 .admin-area a {
     color: #000000;
 	text-decoration: none;
     }
-
+/* class for hovering links inside ADMIN */
 .admin-area a:hover {
     color: #ffffff;
     text-decoration: none;
     background-color: #000000;
     }
-
+/* FOOTER */
 footer {
     text-align: center;
     clear: both;
@@ -95,26 +95,26 @@ footer {
 	background-color: #dddddd;
     border-radius: 10px;
     }
-
+/* some padding and alignment for tables */
 td, th {
     padding: 0 10px 0 10px;
     vertical-align: top;
     text-align: justify;
     }
-
+/* class to remove padding */
 .no-padding {
     padding: 0;
     }
-
+/* class to align on the bottom */
 .align-bottom {
     vertical-align: bottom;
     }
+/* class to align on the right */
 .align-right {
     text-align: right;
     }
-
 /* flash and errors */
-
+/* success message called by controllers */
 .success {
     text-align: center;
     margin-bottom: 5px;
@@ -123,7 +123,7 @@ td, th {
     border-color:#000000;
     border-radius: 10px;
     }
-
+/* error message called by controllers */
 .error {
     text-align: center;
     margin-bottom: 5px;
@@ -132,24 +132,24 @@ td, th {
     border-color:#ff3333;
     border-radius: 10px;
     }
-
-.field_with_errors {
-    background-color: #ff3333;
-    display: table;
-    }
-
-.field_with_errors label {
-    color: #ff3333;
-    background-color: #ffffff;
-    }
-
+/* error explanation for forms, when it is not successfully submitted */
 #error_explanation {
     width: 400px;
     border: 2px solid #ff3333;
     margin-bottom: 20px;
     background-color: #cccccc;
     }
-
+/* field with errors in the form */
+.field_with_errors {
+    background-color: #ff3333;
+    display: table;
+    }
+/* label with errors in the form */
+.field_with_errors label {
+    color: #ff3333;
+    background-color: #ffffff;
+    }
+/* class showme will display when hovering the class showhim */
 .showme {
     display: none;
     position: absolute;
@@ -159,19 +159,20 @@ td, th {
     padding: 5px;
     border-radius: 10px;
     }
-
+/* showme change from display none to display block when hovering showhim */
 .showhim:hover .showme {
     display: block;
 	}
-
+/* the mouse will be a pointer when hovering */
 .showhim {
     cursor: pointer;
     }
+/* float left - used in the header */
 .floatleft {
     color: #dddddd;
     float: left;
 }
-
+/* float right - used in the header */
 .floatright {
     color: #dddddd;
     float: right;

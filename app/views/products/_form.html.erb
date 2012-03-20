@@ -7,9 +7,9 @@
     <% #please see shared partial "error_messages.html.erb" for details. %>
     <% #please also refer to the model Products for validations that may impede submission %>
     <%= render 'shared/error_messages', :object => f.object %>
-
   <div class="field">
     <%= f.label :category %><br />
+    <% #drop down list with all categories %>
     <%= f.collection_select(:category_id, Category.all, :id, :name , {:include_blank => 'Select Category'} ) %>
   </div>
   <div class="field">

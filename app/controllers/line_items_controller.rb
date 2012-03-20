@@ -1,5 +1,4 @@
 class LineItemsController < ApplicationController
-
   def create
     #product stores the product received from the post action "add to cart" button (based on the product_id).
     product = Product.find(params[:product_id])
@@ -34,7 +33,6 @@ class LineItemsController < ApplicationController
       end
     end
   end
-
   def destroy
     #to delete a line_item, first we find it by its id.
     line_item = LineItem.find(params[:id])
@@ -53,8 +51,7 @@ class LineItemsController < ApplicationController
         flash[:error] = 'Unexpected error, please try again latter.'
         redirect_to store_path
       end
-    #if the line_item is not "> 1", so when it became 1, we need to destroy (delete) the line instead of
-                                                                         # decrement its quantity value.
+    #if the line_item is not "> 1", so when it became 1, we need to destroy (delete) the line instead of decrement its quantity value.
     else
       #we destroy the line, display the confirmation and redirect to the application INDEX action (store_path).
       line_item.destroy

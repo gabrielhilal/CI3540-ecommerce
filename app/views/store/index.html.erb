@@ -1,12 +1,10 @@
-<h1>New products</h1>
-
+<h1>Products</h1>
 <table>
 <% #start loop to check all products stored in the variable @products  %>
 <% @products.each do |product| %>
   <tr>
     <% #display the product's image (column image on table products), setting the with to 150px  %>
     <td rowspan="3"><%= image_tag product.image, width: 120 %></td>
-
     <% #display the product's title (column title on table products) %>
     <td colspan="2"><strong><%= product.title %></strong></td>
   </tr>
@@ -16,25 +14,35 @@
   </tr>
   <tr>
     <% #display the product's price (column price on table products) %>
-           <% #number_to_currency will display the price as currency %>
+    <% #number_to_currency will display the price as currency %>
     <td><strong><%= number_to_currency product.price, unit: "&pound;" %></strong></td>
+    <% #we need to check if there is someone logged in with admin privileges, as for admin we need to provide %>
+    <% # "edit"/"delete" product, while for others user (logged or not) we need to provide the "add to cart" button.  %>
     <% if current_user.nil? %>
+        <% #if nobody is logged, we check if there is items available (initial quantity in the products database less the total quantity of its related line_items) %>
+        <% if product.quantity - product.line_items.map do |i| i.quantity end.sum < 1 %>
+           <% #if there is no items available we display "Sold out" %>
+          <td class="align-right"><strong>Sold out</strong></td>
+        <% #if there are products available we display the "add to cart" button %>
+        <% else %>
         <% #this button add the product to the cart, through its product_id %>
         <% #in rails the method for button is POST by default, so it will send the product_id to the action %>
-        <% #        CREATE on the line_items controller. Please see comments on the controller for details. %>
-        <% if product.quantity - product.line_items.map do |i| i.quantity end.sum < 1 %>
-          <td class="align-right"><strong>Sold out</strong></td>
-        <% else %>
+        <% # CREATE on the line_items controller. Please see comments on the controller for details. %>
           <td class="align-right"><%= button_to "Add to the cart", line_items_path(product_id: product) %></td>
         <% end %>
     <% else %>
+        <% #if there is someone logged in, we need to check if the user has admin privileges. %>
         <% if current_user.admin? %>
+            <% #for admin user we display the option "edit" and "delete" instead of "add to cart". %>
             <td class="align-right"><%= link_to 'Edit', edit_product_path(product) %> |
                                     <%= link_to 'delete', product, confirm: 'Are you sure?', method: :delete %></td>
         <% else %>
+        <% #if there is someone logged, but the user doesn't have admin privileges, we check if there are products available. %>
             <% if product.quantity - product.line_items.map do |i| i.quantity end.sum < 1 %>
+              <% #if there is no items available we display "Sold out" %>
               <td class="align-right"><strong>Sold out</strong></td>
             <% else %>
+               <% #if there are products available we display the "add to cart" button %>
               <td class="align-right"><%= button_to "Add to the cart", line_items_path(product_id: product) %></td>
             <% end %>
         <% end %>

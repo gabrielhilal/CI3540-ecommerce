@@ -1,4 +1,5 @@
 <h1>Check out</h1>
+<% #Items in the check out will be displayed only if there are items in the cart %>
 <% unless current_cart.line_items.nil? %>
 <table>
   <tr>
@@ -7,33 +8,43 @@
     <th>Price</th>
     <th>Total</th>
   </tr>
+<% #start loop to display all items in the current_cart. Please note NEW action in the controller for details %>
 <% @items.each do |item| %>
   <tr>
+    <% #item title %>
     <td><%= item.product.title %></td>
+    <% #item quantity %>
     <td><%= item.quantity %></td>
+    <% #item price %>
     <td><%= number_to_currency item.product.price, unit: "&pound;" %></td>
+    <% #item total amount %>
     <td><%= number_to_currency (item.quantity * item.product.price), unit: "&pound;" %></td>
   </tr>
+<% #end loop %>
 <% end %>
   <tr>
     <td></td>
+    <% #display total quantity (sum of the quantity of all items related to the order) %>
     <td><strong><%= @items.map do |i| i.quantity end.sum %></strong></td>
     <td></td>
+    <% #add totals amount to the variable total (sum of quantity multiplied by price for all items related to the order) %>
     <% total = @items.map do |i| i.quantity * i.product.price.to_f end.sum %>
+    <% #dipaly the total as currency in pounds %>
     <td><strong><%= number_to_currency total, unit: "&pound;" %></strong></td>
   </tr>
 </table>
+<% #end the "unless current_cart.line_items.nil?" %>
 <% end %>
+<% #here we start the form for the check out %>
 <%= form_for(@order) do |f| %>
     <% #display error messages if form can't be submitted. %>
     <% #please see shared partial "error_messages.html.erb" for details. %>
-    <% #please also refer to the model Categories for validations that may impede submission %>
+    <% #please also refer to the model Order for validations that may impede submission %>
     <%= render 'shared/error_messages', :object => f.object %>
-
 <h3>Payment</h3>
-
   <div class="field">
     <%= f.label :card_type %><br />
+    <% #dropd down list with the array CARDS defined in the order model %>
     <%= f.select :card_type, Order::CARDS, prompt: 'Select a payment method' %>
   </div>
   <div class="field">
@@ -41,12 +52,12 @@
     <%= f.text_field :card_number %>
   </div>
   <div class="field">
-    <%= f.label :card_date %><br />
+    <%= f.label :card_date, "Expire Date" %><br />
     <%= f.text_field :card_date %>
   </div>
   <div class="field">
-    <%= f.label :card_cvc %><br />
-    <%= f.text_field :card_cvc %>
+    <%= f.label :card_cvc, "CVC" %><br />
+    <%= f.password_field :card_cvc %>
   </div>
   <div class="actions">
     <%= f.submit 'Place Order' %>

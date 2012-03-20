@@ -1,23 +1,28 @@
-<% if current_user.nil? %>
-  <div class="align-right"><%= link_to 'Login', login_path %></div>
-<% else %>
-  <div class="align-right"><%= link_to 'Not ' + current_user.name + '? / Logout', logout_path %></div>
-<% end %>
+<% #link for logout %>
+<div class="align-right"><%= 'Not ' + current_user.name + '?' %> <%= link_to 'Logout', logout_path %></div>
 <br />
+<% #admin navigation %>
 <div class="admin-area">
   <p><strong>Manage Categories</strong><br />
-  <%= link_to '-show categories', categories_path %><br />
-  <%= link_to '-create a category', new_category_path %>
+    <% #link to categories controller, INDEX action %>
+    <%= link_to '-show categories', categories_path %><br />
+    <% #link to create new category (action NEW, controller categories) %>
+    <%= link_to '-create a category', new_category_path %>
   </p>
   <p><strong>Manage Products</strong><br />
-  <%= link_to '-show products', products_path %><br />
-  <%= link_to '-create a product', new_product_path %>
+    <% #link to products controller, INDEX action %>
+    <%= link_to '-show products', products_path %><br />
+    <% #link to create new product (action NEW, controller products) %>
+    <%= link_to '-create a product', new_product_path %>
   </p>
   <p><strong>Manage Users</strong><br />
-  <%= link_to '-show users', users_path %><br />
-  <%= link_to '-create a user', new_user_path %>
+    <% #link to users controller, INDEX action %>
+    <%= link_to '-show users', users_path %><br />
+    <% #link to create new user (action NEW, controller users) %>
+    <%= link_to '-create a user', new_user_path %>
   </p>
   <p><strong>Manage Orders</strong><br />
-  <%= link_to '-show orders', orders_path %><br />
+    <% #link to orders controller, INDEX action %>
+    <%= link_to '-show orders', orders_path %><br />
   </p>
 </div>

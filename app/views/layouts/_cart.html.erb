@@ -1,6 +1,9 @@
+<% #First we need to check if there is someone logged in %>
 <% if current_user.nil? %>
+  <% #if nobody is logged in, we display the log in link %>
   <div class="align-right"><%= link_to 'Login', login_path %> | New customer? <%= link_to 'Sign in', new_user_path %></div><br />
 <% else %>
+  <% #if someone is logged in, we display the logout link %>
   <div class="align-right">Not <%= current_user.name %>? <%= link_to 'Logout', logout_path %></div>
 <% end %>
 
@@ -11,23 +14,30 @@
   <tr>
     <% #display quantity %>
     <td class="no-padding"><%= item.quantity %></td>
-    <% #display title %>
+    <% #display title and hovering the mouse over title display the bellow. Please note css "showhim" %>
+    <% # and "showme" for details. %>
     <td class="showhim"><%= item.product.title %>
       <div class="showme">
       <table>
         <tr>
+          <% #product title %>
           <td colspan="2"><strong><%= item.product.title %></strong></td>
         </tr>
         <tr>
+          <% #product image (small) %>
           <td rowspan="4"><%= image_tag item.product.image, width: 70 %></td>
         </tr>
         <tr>
+          <% #quantity and price %>
           <td><strong><%= item.quantity %></strong> x <%= number_to_currency item.product.price, unit: "&pound;" %></td>
         </tr>
         <tr>
+          <% #total price for the item (quantity x price) %>
           <td><strong><%= number_to_currency (item.quantity * item.product.price), unit: "&pound;" %></strong></td>
         </tr>
         <tr>
+          <% #here we check if there are more than one item to display correctly "remove" or "remove one" %>
+          <% #the link will decrease the quantity. Please note action DESTROY in the lineitems controller for details %>
           <td><% if item.quantity > 1 %>
               <%= link_to 'remove one', item, method: :delete %>
           <% else %>
@@ -36,7 +46,9 @@
           <% end %>
         </tr>
       </table>
+      <% #here we close the div for the class "showme" (popup) %>
       </div>
+    <% #this td close the class "showhim" %>
     </td>
   </tr>
 <% #end loop %>
@@ -44,7 +56,7 @@
 </table>
 <br />
 
-<% #button to empty the current cart and total will appear only if there is at least one line item in the cart %>
+<% #button to empty the current cart, checkout and the total will appear only if there is at least one line item in the cart %>
 <% unless current_cart.line_items.empty? %>
   <% #here we add to a variable total, the sum of all line_items quantity multiplied for its product price  %>
   <% total = current_cart.line_items.map do |i| i.quantity * i.product.price.to_f end.sum %>
@@ -53,10 +65,11 @@
 
   <% #button to empty cart - request conformation before emptying the cart %>
   <div class="align-right"><%= button_to 'Empty cart', current_cart, confirm: 'Are you sure you want to empty your cart?', method: :delete %></div>
+  <% #button to checkout - here we need to change the action from POST (default) to GET, to achieve the action NEW in the controller order %>
   <div><%= button_to 'CHECK OUT', new_order_path, method: :get %></div>
 <% end %>
 
-<% #if there is someone logged we display the manage account option %>
+<% #only if there is someone logged we display the manage account option %>
 <% unless current_user.nil? %>
  <p class="admin-area"><strong><%= link_to 'Manage Account', current_user %></strong></p>
 <% end %>

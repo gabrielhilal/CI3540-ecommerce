@@ -1,6 +1,10 @@
+<% #here we create our search form. In Rails the action for forms is POST by default,  %>
+<% # however in this case we need a GET method, as we are not saving in our database, %>
+<% # instead we are sending the value in the search for the action INDEX in the STORE controller %>
 <%= form_tag store_path, method: :get do %>
   <p>
     <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
+    <% #the nil will remove the name from the form, as we don't need this information in the hyperlink %>
+    <%= submit_tag "Search", name: nil %>
   </p>
 <% end %>
