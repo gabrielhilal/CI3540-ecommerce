@@ -52,7 +52,7 @@ module Ecommerce
 
     # Enable the asset pipeline
     config.assets.enabled = true
-    config.assets.precompile = [/^[-_a-zA-Z0-9]*\..*/]
+    config.assets.initialize_on_precompile = false
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
