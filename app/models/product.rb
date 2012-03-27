@@ -22,7 +22,7 @@ class Product < ActiveRecord::Base
     #if the controller try to find the products by search.
     if search
       #we try to find the value searched in the columns title and description to return it.
-      find(:all, :conditions => ['title LIKE ? OR description LIKE ?', "%#{search}%", "%#{search}%"])
+      find(:all, :conditions => ['title ILIKE ? OR description ILIKE ?', "%#{search}%", "%#{search}%"])
     #if the value searched is empty we return all products.
     else
       find(:all)
