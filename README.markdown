@@ -1,6 +1,6 @@
 #### E-commerce application
 
-<strong>Technology:</strong> Ruby on Rails
+<strong>Technology:</strong> Ruby on Rails | CSS3 | HTML5
 
 <strong>Summary:</strong> Application developed as part of an assignment for <em>CI3540-Web Based Enterprise Services</em> at [*Kingston University*](http://www.kingston.ac.uk).
 
