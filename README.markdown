@@ -1,5 +1,4 @@
-# E-commerce application
-## Gabriel Delucis Hilal
+#### E-commerce application
 
 <strong>Technology:</strong> Ruby on Rails
 
